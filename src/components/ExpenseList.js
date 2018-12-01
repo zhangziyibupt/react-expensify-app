@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
 
+// named export since need to test unconnected component
 export const ExpenseList = (props) => (
     <div>
         {

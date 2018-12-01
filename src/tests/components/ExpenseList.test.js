@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+// should test unconnected component
 import { ExpenseList } from '../../components/ExpenseList';
 import expenses from '../fixtures/expenses';
 

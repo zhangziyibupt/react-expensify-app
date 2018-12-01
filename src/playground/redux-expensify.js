@@ -1,5 +1,23 @@
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
+
+const demoState = {
+    expenses: [{
+        id: 'asdfasdf',
+        description: 'January Rent',
+        note: 'This is nore',
+        amount: 54500,
+        createdAt: 0
+    }],
+    filters: {
+        text: 'rent',
+        sortBy: 'amount', // date ot amount
+        startDate: undefined,
+        endDate: undefined
+    }
+};
+
+
 // Actions
 // ADD_EXPENSE
 const addExpense = (
@@ -177,23 +195,6 @@ store.dispatch(sortByAmount());
 // store.dispatch(setStartDate(-2000));
 // // store.dispatch(setStartDate());
 // store.dispatch(setEndDate(1250));
-
-const demoState = {
-    expenses: [{
-        id: 'asdfasdf',
-        description: 'January Rent',
-        note: 'This is nore',
-        amount: 54500,
-        createdAt: 0
-    }],
-    filters: {
-        text: 'rent',
-        sortBy: 'amount', // date ot amount
-        startDate: undefined,
-        endDate: undefined
-    }
-};
-
 
 const user = {
     name: 'Jen',

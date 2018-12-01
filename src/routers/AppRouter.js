@@ -7,6 +7,7 @@ import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 
+// stateless component 
 const AppRouter = () => (
     <BrowserRouter>
         <div>

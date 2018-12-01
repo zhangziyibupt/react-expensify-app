@@ -29,8 +29,8 @@ export default class ExpenseForm extends React.Component {
 
     onAmountChange = (e) => {
         const amount = e.target.value;
-        // /^\d*(\.\d{0,2})?$/
-        if (!amount || amount.match(/^\d+(\.\d{0,2})?$/)) {
+        // /^\d{1,}(\.\d{0,2})?$/
+        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
             this.setState(() => ({ amount }));
         }
     }
@@ -56,7 +56,7 @@ export default class ExpenseForm extends React.Component {
             this.props.onSubmit({
                 description: this.state.description,
                 amount: parseFloat(this.state.amount, 10) * 100,
-                createdAt: this.state.createdAt.valueOf(),
+                createdAt: this.state.createdAt.valueOf(), // convert from moment obj to timestamp
                 note: this.state.note
             });
         }
