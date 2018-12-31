@@ -18,6 +18,7 @@ export const addExpense = (expense) => ({
     expense
 });
 
+// Start the async process off
 export const startAddExpense = (expenseData = {}) => {
     return (dispatch) => {
         // get data from user input
@@ -27,8 +28,11 @@ export const startAddExpense = (expenseData = {}) => {
             amount = 0, 
             createdAt = 0 
         } = expenseData;
+
         const expense = { description, note, amount, createdAt };
         // write to firebase
+        // for test, we need to confirm that data is written to DB and the action dispatched to store 
+        // need return a promise for promise chain in test cases
         return database.ref('expenses').push(expense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key, 
@@ -44,6 +48,14 @@ export const removeExpense = ({ id } = {}) => ({
     id
 });
 
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({ id }));
+        });
+    };
+};
+
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
@@ -57,6 +69,9 @@ export const setExpenses = (expenses) => ({
     expenses
 });
 
+// 1. fetch all expense data once
+// 2. parse that data into an array
+// 3. dispatch SET_EXPENSES
 export const startSetExpenses = () => {
     return (dispatch) => {
         return database.ref('expenses').once('value').then((snapshot) => {
